@@ -5,561 +5,489 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>이호상 — Backend Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #ffffff;
-      --bg-soft: #f8fafc;
-      --text: #0f172a;
-      --text-muted: #64748b;
-      --accent: #4f46e5;
-      --accent-light: #e0e7ff;
-      --border: #e2e8f0;
-      --radius: 16px;
-      --shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --dark: #07090f;
+      --dark2: #0d1117;
+      --surface: #161b27;
+      --surface2: #1e2535;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8eaf0;
+      --text-muted: #8892a4;
+      --accent: #6c63ff;
+      --accent2: #a78bfa;
+      --cyan: #38bdf8;
+      --green: #34d399;
+      --radius: 20px;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Noto Sans KR', 'Inter', sans-serif;
-      background: var(--bg);
+      font-family: 'Space Grotesk', 'Noto Sans KR', sans-serif;
+      background: var(--dark);
       color: var(--text);
-      line-height: 1.7;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    /* ── NAV ── */
+    /* ─── NAV ─── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 60px;
-      background: rgba(255,255,255,0.88);
-      backdrop-filter: blur(14px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 22px 60px;
+      background: rgba(7,9,15,0.75);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
     .nav-logo {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
-      letter-spacing: -0.5px;
+      font-size: 1rem; font-weight: 700; color: var(--text);
+      text-decoration: none; letter-spacing: 2px; text-transform: uppercase;
     }
-    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
     .nav-links a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
+      text-decoration: none; color: var(--text-muted);
+      font-size: 0.85rem; font-weight: 500; letter-spacing: 0.5px;
+      transition: color .2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--text); }
 
-    /* ── HERO ── */
+    /* ─── HERO ─── */
     .hero {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
+      display: grid; place-items: center;
       padding: 120px 60px 80px;
-      max-width: 1100px;
-      margin: 0 auto;
+      position: relative; overflow: hidden;
     }
-    .hero-content { max-width: 680px; }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--accent-light);
-      color: var(--accent);
-      padding: 6px 16px;
-      border-radius: 100px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 28px;
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(108,99,255,.15) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(56,189,248,.08) 0%, transparent 60%);
     }
-    .hero-badge::before {
-      content: '';
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 2s infinite;
+    .hero-inner { position: relative; z-index: 1; max-width: 1100px; width: 100%; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.78rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--accent2); margin-bottom: 28px;
     }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.75); }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 1px;
+      background: var(--accent2);
     }
-
     .hero h1 {
-      font-size: clamp(2.6rem, 5.5vw, 4.2rem);
-      font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -2px;
-      margin-bottom: 22px;
+      font-size: clamp(3rem, 7vw, 6rem);
+      font-weight: 700; line-height: 1.05; letter-spacing: -2px;
+      margin-bottom: 32px;
     }
-    .hero h1 .highlight { color: var(--accent); }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #6c63ff, #38bdf8, #a78bfa);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--text-muted); line-height: 1.85;
+      max-width: 520px; margin-bottom: 48px;
+      font-family: 'Noto Sans KR', sans-serif; font-weight: 300;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
-    .hero-desc {
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      line-height: 1.85;
-      margin-bottom: 38px;
-      max-width: 540px;
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 100px;
+      text-decoration: none; font-weight: 600; font-size: 0.9rem;
+      transition: all .25s; cursor: pointer; border: none;
     }
-    .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-fill { background: var(--accent); color: white; }
+    .btn-fill:hover { background: #5b52f0; box-shadow: 0 0 32px rgba(108,99,255,.4); transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:hover { border-color: rgba(255,255,255,.25); background: var(--surface); }
 
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--accent);
-      color: white;
-      padding: 14px 28px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-      box-shadow: 0 4px 16px rgba(79,70,229,0.3);
+    .hero-stats {
+      display: flex; gap: 40px; margin-top: 64px;
+      padding-top: 40px; border-top: 1px solid var(--border);
+      flex-wrap: wrap;
     }
-    .btn-primary:hover {
-      background: #4338ca;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 26px rgba(79,70,229,0.4);
-    }
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--text);
-      padding: 14px 28px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      border: 2px solid var(--border);
-      transition: all 0.2s;
-    }
-    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .stat-num { font-size: 2.2rem; font-weight: 700; letter-spacing: -1px; line-height: 1; }
+    .stat-num span { color: var(--accent); }
+    .stat-label { font-size: 0.75rem; color: var(--text-muted); margin-top: 6px; letter-spacing: 0.5px; }
 
-    /* ── SECTION ── */
-    section { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
-    .section-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      color: var(--accent);
-      margin-bottom: 12px;
+    /* ─── SECTION BASE ─── */
+    .section-wrap { max-width: 1100px; margin: 0 auto; padding: 100px 60px; }
+    .label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent2); margin-bottom: 16px;
     }
+    .label::before { content: '//'; color: var(--accent); }
     .section-title {
-      font-size: clamp(1.8rem, 3vw, 2.4rem);
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 48px;
-      line-height: 1.25;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; letter-spacing: -1.5px;
+      line-height: 1.1; margin-bottom: 56px;
     }
+    .section-title em { font-style: normal; color: var(--text-muted); }
 
-    /* ── EXPERIENCE ── */
-    .exp-item {
-      display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 32px;
-      padding: 40px 0;
+    /* ─── EXPERIENCE ─── */
+    .exp-section { background: var(--dark2); }
+    .exp-row {
+      display: grid; grid-template-columns: 160px 2px 1fr;
+      gap: 0 40px; padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-row:first-child { padding-top: 0; }
+    .exp-row:last-child { border-bottom: none; }
+    .exp-left { text-align: right; padding-top: 4px; }
+    .exp-year { font-size: 0.78rem; letter-spacing: 1px; color: var(--text-muted); line-height: 1.7; }
+    .exp-divider { display: flex; flex-direction: column; align-items: center; }
+    .exp-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--accent); margin-top: 4px; flex-shrink: 0;
+      box-shadow: 0 0 14px var(--accent);
+    }
+    .exp-line { flex: 1; width: 2px; background: linear-gradient(to bottom, var(--accent), transparent); margin-top: 8px; }
+    .exp-company { font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 4px; }
+    .exp-role { font-size: 0.78rem; color: var(--accent2); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .exp-desc { color: var(--text-muted); font-size: 0.92rem; line-height: 1.85; margin-bottom: 18px; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; }
+    .exp-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { padding: 4px 14px; border-radius: 100px; font-size: 0.75rem; font-weight: 600; background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
+
+    /* ─── ACHIEVEMENTS ─── */
+    .ach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .ach-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px 28px;
+      position: relative; overflow: hidden;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+    .ach-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--cyan));
+      opacity: 0; transition: opacity .3s;
+    }
+    .ach-card:hover { transform: translateY(-6px); border-color: rgba(108,99,255,.3); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+    .ach-card:hover::before { opacity: 1; }
+    .ach-icon { font-size: 2rem; margin-bottom: 20px; }
+    .ach-num {
+      font-size: 2.8rem; font-weight: 700; letter-spacing: -2px; line-height: 1; margin-bottom: 8px;
+      background: linear-gradient(135deg, var(--text), var(--text-muted));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .ach-title { font-size: 1rem; font-weight: 700; margin-bottom: 12px; color: var(--text); }
+    .ach-desc { color: var(--text-muted); font-size: 0.86rem; line-height: 1.8; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; }
+    .ach-tag {
+      display: inline-flex; align-items: center; gap: 4px; margin-top: 18px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 1px;
+      color: var(--accent2); text-transform: uppercase;
+    }
+    .ach-tag::before { content: '↗'; }
+
+    /* ─── SKILLS ─── */
+    .skills-section { background: var(--dark2); }
+    .skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .skills-intro h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 16px; }
+    .skills-intro p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.85; font-family: 'Noto Sans KR', sans-serif; font-weight: 300; }
+    .skills-groups { display: flex; flex-direction: column; gap: 24px; }
+    .skill-group-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 10px; }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+    .chip {
+      padding: 7px 16px; border-radius: 10px; font-size: 0.83rem; font-weight: 600;
+      background: var(--surface2); border: 1px solid var(--border); color: var(--text);
+      transition: all .2s;
+    }
+    .chip:hover { border-color: var(--accent); color: var(--accent2); background: rgba(108,99,255,.1); }
+    .chip.main { border-color: rgba(108,99,255,.3); color: var(--accent2); }
+
+    /* ─── BLOG ─── */
+    .blog-banner {
+      display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 40px;
+      background: linear-gradient(135deg, var(--surface) 0%, rgba(108,99,255,.15) 100%);
+      border: 1px solid rgba(108,99,255,.2);
+      border-radius: 24px; padding: 56px 60px;
+    }
+    .blog-banner h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 10px; }
+    .blog-banner p { color: var(--text-muted); font-family: 'Noto Sans KR', sans-serif; font-weight: 300; }
+    .btn-glow { background: var(--accent); color: white; box-shadow: 0 0 24px rgba(108,99,255,.5); }
+    .btn-glow:hover { box-shadow: 0 0 48px rgba(108,99,255,.7); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    .footer-wrap {
+      max-width: 1100px; margin: 0 auto; padding: 40px 60px;
+      display: flex; justify-content: space-between; align-items: center;
       border-top: 1px solid var(--border);
     }
-    .exp-item:last-child { border-bottom: 1px solid var(--border); }
-    .exp-period { color: var(--text-muted); font-size: 0.9rem; font-weight: 500; padding-top: 4px; }
-    .exp-company { font-size: 1.2rem; font-weight: 700; margin-bottom: 4px; }
-    .exp-role { color: var(--accent); font-size: 0.88rem; font-weight: 600; margin-bottom: 12px; }
-    .exp-desc { color: var(--text-muted); font-size: 0.93rem; line-height: 1.8; }
-    .exp-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .tag {
-      background: var(--bg-soft);
-      color: var(--text-muted);
-      padding: 4px 12px;
-      border-radius: 100px;
-      font-size: 0.78rem;
-      font-weight: 500;
-      border: 1px solid var(--border);
-    }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { color: var(--text-muted); font-size: 0.82rem; }
 
-    /* ── ACHIEVEMENTS ── */
-    .achievements-bg { background: var(--bg-soft); }
-    .achievements-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 22px;
-    }
-    .achievement-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 30px;
-      transition: all 0.3s;
-    }
-    .achievement-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-      border-color: #c7d2fe;
-    }
-    .achievement-icon { font-size: 2rem; margin-bottom: 16px; }
-    .achievement-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; }
-    .achievement-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.8; }
-    .achievement-impact {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--accent-light);
-      color: var(--accent);
-      padding: 4px 11px;
-      border-radius: 100px;
-      font-size: 0.76rem;
-      font-weight: 600;
-      margin-top: 14px;
-    }
+    /* ─── REVEAL ─── */
+    .r { opacity: 0; transform: translateY(30px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    .r.d1 { transition-delay: .1s; } .r.d2 { transition-delay: .2s; }
+    .r.d3 { transition-delay: .3s; } .r.d4 { transition-delay: .4s; }
+    .r.on { opacity: 1; transform: none; }
 
-    /* ── SKILLS ── */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
-    }
-    .skill-group {
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 26px;
-    }
-    .skill-group-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skill-tag {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 5px 12px;
-      font-size: 0.83rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    /* ── BLOG CTA ── */
-    .blog-cta {
-      background: linear-gradient(135deg, #4f46e5, #7c3aed);
-      border-radius: 24px;
-      padding: 64px;
-      text-align: center;
-      color: white;
-    }
-    .blog-cta h2 {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -1px;
-      margin-bottom: 12px;
-    }
-    .blog-cta p {
-      opacity: 0.8;
-      margin-bottom: 28px;
-      font-size: 1.05rem;
-    }
-    .btn-white {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: white;
-      color: var(--accent);
-      padding: 14px 28px;
-      border-radius: 100px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      transition: all 0.2s;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    }
-    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(0,0,0,0.2); }
-
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 40px 60px;
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--accent); }
-    .footer-copy { color: var(--text-muted); font-size: 0.85rem; }
-
-    /* ── REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.2s; }
-    .reveal-delay-3 { transition-delay: 0.3s; }
-
-    /* ── RESPONSIVE ── */
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
       .nav-links { display: none; }
-      .hero, section { padding: 60px 24px; }
-      .hero { padding-top: 100px; min-height: auto; }
-      .exp-item { grid-template-columns: 1fr; gap: 6px; }
-      .achievements-grid, .skills-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 16px; text-align: center; padding: 32px 24px; }
-      .blog-cta { padding: 40px 24px; }
-      .blog-cta h2 { font-size: 1.6rem; }
+      .hero, .section-wrap { padding: 80px 24px 60px; }
+      .hero { padding-top: 100px; }
+      .exp-row { grid-template-columns: 1fr; gap: 8px; }
+      .exp-left { text-align: left; }
+      .exp-divider { display: none; }
+      .ach-grid { grid-template-columns: 1fr; }
+      .skills-layout { grid-template-columns: 1fr; gap: 32px; }
+      .blog-banner { grid-template-columns: 1fr; padding: 36px 28px; }
+      .footer-wrap { flex-direction: column; gap: 16px; padding: 32px 24px; }
+    }
+    @media (max-width: 1000px) {
+      .ach-grid { grid-template-columns: repeat(2,1fr); }
     }
   </style>
 </head>
 <body>
 
-<!-- ── NAV ── -->
 <nav>
-  <a href="#" class="nav-logo">이호상</a>
+  <a href="/" class="nav-logo">LHS<span>.</span></a>
   <ul class="nav-links">
     <li><a href="#experience">경력</a></li>
-    <li><a href="#achievements">주요 성과</a></li>
-    <li><a href="#skills">기술 스택</a></li>
-    <li><a href="#blog">블로그</a></li>
+    <li><a href="#achievements">성과</a></li>
+    <li><a href="#skills">기술</a></li>
+    <li><a href="/blog">블로그</a></li>
   </ul>
 </nav>
 
-<!-- ── HERO ── -->
-<div class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">백엔드 개발자 · 4년차</div>
-    <h1>
-      서비스가 <span class="highlight">멈추지 않도록</span>,<br>
-      코드가 말하게
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow r">Backend Developer · 4년차</div>
+    <h1 class="r d1">
+      장애가 나도<br>
+      <em>서비스는 살아있다</em>
     </h1>
-    <p class="hero-desc">
-      안녕하세요, 이호상입니다.<br>
-      에듀테크 분야에서 수십만 학생들이 매일 쓰는 학습 서비스를 개발하고 운영하고 있습니다.
-      문제가 터지기 전에 막고, 터지면 빠르게 고치는 것을 중요하게 생각합니다.
+    <p class="hero-sub r d2">
+      안녕하세요, <strong>이호상</strong>입니다.<br>
+      에듀테크 플랫폼에서 수십만 학생의 학습 데이터를 다루며,
+      서버가 버텨야 할 순간마다 버티게 만드는 일을 해왔습니다.
     </p>
-    <div class="hero-cta">
-      <a href="#achievements" class="btn-primary">주요 성과 보기 →</a>
-      <a href="https://github.com/dpdtydz" target="_blank" class="btn-secondary">GitHub</a>
+    <div class="hero-actions r d3">
+      <a href="#achievements" class="btn btn-fill">주요 성과 보기 →</a>
+      <a href="https://github.com/dpdtydz" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+    <div class="hero-stats r d4">
+      <div class="stat-item">
+        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-label">years of experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40<span>+</span></div>
+        <div class="stat-label">APIs migrated</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0</div>
+        <div class="stat-label">502 errors after fix</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">redis fallbacks handled</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<div class="exp-section" id="experience">
+  <div class="section-wrap">
+    <div class="label r">Experience</div>
+    <h2 class="section-title r d1">일한 곳들<em>.</em></h2>
+
+    <div class="exp-row r">
+      <div class="exp-left">
+        <div class="exp-year">2023.08.14<br>— 현재</div>
+      </div>
+      <div class="exp-divider">
+        <div class="exp-dot"></div>
+        <div class="exp-line"></div>
+      </div>
+      <div>
+        <div class="exp-company">아이스크림에듀</div>
+        <div class="exp-role">학습서비스개발팀 · Backend Engineer</div>
+        <div class="exp-desc">
+          리틀홈런 학습 플랫폼 백엔드 전담. 공용 서버에서 전용 서버 분리, 캐시 장애 대응,
+          배포 무중단화, 통계 대시보드 설계·구현까지 서비스 전반을 책임지고 있습니다.
+        </div>
+        <div class="exp-pills">
+          <span class="pill">Java 11</span><span class="pill">Spring Boot 2.7</span>
+          <span class="pill">JPA</span><span class="pill">MyBatis</span>
+          <span class="pill">MySQL</span><span class="pill">MariaDB</span>
+          <span class="pill">Redis</span><span class="pill">Angular</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-row r d1">
+      <div class="exp-left">
+        <div class="exp-year">2022.08.08<br>— 2023.08.14</div>
+      </div>
+      <div class="exp-divider">
+        <div class="exp-dot" style="background:var(--cyan);box-shadow:0 0 14px var(--cyan)"></div>
+      </div>
+      <div>
+        <div class="exp-company">아이스크림키즈</div>
+        <div class="exp-role">IT 개발팀 · Backend Engineer</div>
+        <div class="exp-desc">
+          유아 교육 서비스 백엔드 개발. Spring Boot와 Vue.js 기반 웹 서비스 개발 및 유지보수를 담당했습니다.
+        </div>
+        <div class="exp-pills">
+          <span class="pill">Java</span><span class="pill">Spring Boot</span>
+          <span class="pill">JPA</span><span class="pill">Vue.js</span>
+          <span class="pill">MyBatis</span><span class="pill">MariaDB</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div id="achievements">
+  <div class="section-wrap">
+    <div class="label r">Achievements</div>
+    <h2 class="section-title r d1">이런 걸<br><em>해결했습니다.</em></h2>
+    <div class="ach-grid">
+
+      <div class="ach-card r d1">
+        <div class="ach-icon">🏗️</div>
+        <div class="ach-num">40+</div>
+        <div class="ach-title">학습 서버 독립 분리</div>
+        <div class="ach-desc">초등·중등·리틀홈런이 함께 쓰던 공용 서버에서 리틀홈런 전용 서버를 완전히 분리. 코드 한 줄이 전 서비스에 영향을 주던 구조에서 벗어났습니다.</div>
+        <div class="ach-tag">7개 도메인 이관</div>
+      </div>
+
+      <div class="ach-card r d2">
+        <div class="ach-icon">🚀</div>
+        <div class="ach-num">0</div>
+        <div class="ach-title">배포 중 서비스 무중단</div>
+        <div class="ach-desc">배포할 때마다 사용자들이 겪던 502 오류를 해결. 서버가 요청을 모두 처리한 뒤 안전하게 종료되도록 바꿔 배포 중에도 학습이 끊기지 않습니다.</div>
+        <div class="ach-tag">502 에러 제거</div>
+      </div>
+
+      <div class="ach-card r d3">
+        <div class="ach-icon">🛡️</div>
+        <div class="ach-num">∞</div>
+        <div class="ach-title">캐시 서버 장애 자동 복구</div>
+        <div class="ach-desc">Redis 캐시가 갑자기 다운돼도 서비스가 멈추지 않도록 자동 복구 시스템 구축. 장애 시 DB로 자동 전환되어 사용자는 서비스를 계속 이용할 수 있습니다.</div>
+        <div class="ach-tag">Redis → DB fallback</div>
+      </div>
+
+      <div class="ach-card r d1">
+        <div class="ach-icon">📊</div>
+        <div class="ach-num">6</div>
+        <div class="ach-title">실시간 학습 통계 대시보드</div>
+        <div class="ach-desc">구독자 수, 월간 활성 사용자, 이탈률, 콘텐츠별 학습 현황을 한 화면에서 볼 수 있는 통계 시스템을 설계부터 구현까지 담당했습니다.</div>
+        <div class="ach-tag">6개 핵심 지표</div>
+      </div>
+
+      <div class="ach-card r d2">
+        <div class="ach-icon">🎙️</div>
+        <div class="ach-num">E2E</div>
+        <div class="ach-title">말하는 수학 기능 구현</div>
+        <div class="ach-desc">아이들이 수학 문제를 목소리로 풀어보는 기능을 백엔드부터 관리자 UI까지 전체 구현. 브라우저 보안 정책 차단 문제도 서버 프록시로 해결했습니다.</div>
+        <div class="ach-tag">녹음·재생·관리 전체</div>
+      </div>
+
+      <div class="ach-card r d3">
+        <div class="ach-icon">⚙️</div>
+        <div class="ach-num">~0</div>
+        <div class="ach-title">동시 요청 충돌 문제 해결</div>
+        <div class="ach-desc">수천 명이 동시에 학습을 시작할 때 발생하는 간헐적 서버 오류를 분석·해결. 동일 요청이 동시에 들어와도 데이터가 깨지지 않는 구조로 개선했습니다.</div>
+        <div class="ach-tag">Race Condition 제거</div>
+      </div>
+
     </div>
   </div>
 </div>
 
-<!-- ── EXPERIENCE ── -->
-<section id="experience">
-  <div class="section-label">Experience</div>
-  <h2 class="section-title">경력</h2>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">2023.08.14 — 현재</div>
-    <div>
-      <div class="exp-company">아이스크림에듀</div>
-      <div class="exp-role">학습서비스개발팀 · 백엔드 개발자</div>
-      <div class="exp-desc">
-        리틀홈런 학습 플랫폼의 백엔드 개발 및 운영을 담당하고 있습니다.
-        수십만 건의 학습 데이터를 처리하는 API 서버 설계, 서비스 안정화, 캐싱 시스템 구축, 통계 대시보드 개발 등
-        서비스 전반에 걸쳐 설계부터 운영까지 책임지고 있습니다.
+<!-- SKILLS -->
+<div class="skills-section" id="skills">
+  <div class="section-wrap">
+    <div class="label r">Skills</div>
+    <h2 class="section-title r d1">무기고<em>.</em></h2>
+    <div class="skills-layout">
+      <div class="skills-intro r d1">
+        <h3>주로 Java · Spring 생태계에서 일합니다.</h3>
+        <p style="margin-top:16px;">안정적인 서버 운영과 빠른 장애 대응에 집중해왔습니다. 데이터베이스 설계부터 캐싱 전략, API 설계, 관리자 UI 개발까지 서비스를 끝까지 책임지는 구조로 만들어가고 있습니다.</p>
       </div>
-      <div class="exp-tags">
-        <span class="tag">Java</span>
-        <span class="tag">Spring Boot</span>
-        <span class="tag">JPA</span>
-        <span class="tag">MyBatis</span>
-        <span class="tag">MySQL</span>
-        <span class="tag">MariaDB</span>
-        <span class="tag">Redis</span>
-        <span class="tag">Angular</span>
+      <div class="skills-groups r d2">
+        <div>
+          <div class="skill-group-label">Backend</div>
+          <div class="skill-chips">
+            <span class="chip main">Java</span><span class="chip main">Spring Boot</span>
+            <span class="chip main">JPA / Hibernate</span><span class="chip">MyBatis</span>
+            <span class="chip">Node.js</span><span class="chip">Python</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Database & Cache</div>
+          <div class="skill-chips">
+            <span class="chip main">MySQL</span><span class="chip main">MariaDB</span>
+            <span class="chip main">Redis</span><span class="chip">MongoDB</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Frontend</div>
+          <div class="skill-chips">
+            <span class="chip main">Angular</span><span class="chip">Vue.js</span>
+            <span class="chip">React</span><span class="chip">TypeScript</span>
+          </div>
+        </div>
+        <div>
+          <div class="skill-group-label">Infra</div>
+          <div class="skill-chips">
+            <span class="chip">Docker</span><span class="chip">Nginx</span>
+            <span class="chip">AWS</span><span class="chip">Kubernetes</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="exp-item reveal">
-    <div class="exp-period">2022.08.08 — 2023.08.14</div>
-    <div>
-      <div class="exp-company">아이스크림키즈</div>
-      <div class="exp-role">IT 개발팀 · 백엔드 개발자</div>
-      <div class="exp-desc">
-        유아 교육 서비스의 백엔드 개발에 참여했습니다.
-        Spring Boot와 Vue.js 기반의 웹 서비스 개발 및 유지보수를 담당했습니다.
-      </div>
-      <div class="exp-tags">
-        <span class="tag">Java</span>
-        <span class="tag">Spring Boot</span>
-        <span class="tag">JPA</span>
-        <span class="tag">Vue.js</span>
-        <span class="tag">MyBatis</span>
-        <span class="tag">MariaDB</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── ACHIEVEMENTS ── -->
-<div class="achievements-bg">
-  <section id="achievements">
-    <div class="section-label">Achievements</div>
-    <h2 class="section-title">주요 성과</h2>
-    <div class="achievements-grid">
-
-      <div class="achievement-card reveal reveal-delay-1">
-        <div class="achievement-icon">🏗️</div>
-        <div class="achievement-title">학습 서버 독립 분리</div>
-        <div class="achievement-desc">
-          초등·중등·리틀홈런이 함께 쓰던 공용 서버에서 리틀홈런 전용 서버를 완전히 분리했습니다.
-          코드 한 줄이 전체 서비스에 영향을 주던 구조에서 벗어나, 독립적으로 개발하고 배포할 수 있는 구조로 전환했습니다.
-        </div>
-        <span class="achievement-impact">⚡ 7개 도메인 · 40+ API 이관 완료</span>
-      </div>
-
-      <div class="achievement-card reveal reveal-delay-2">
-        <div class="achievement-icon">🚀</div>
-        <div class="achievement-title">배포 중 서비스 무중단</div>
-        <div class="achievement-desc">
-          서버를 업데이트할 때마다 사용자들이 "페이지를 불러올 수 없습니다" 오류를 겪던 문제를 해결했습니다.
-          서버가 처리 중인 요청을 모두 완료한 뒤 안전하게 종료되도록 바꿔, 이제 배포 중에도 학습이 끊기지 않습니다.
-        </div>
-        <span class="achievement-impact">✅ 502 에러 완전 제거</span>
-      </div>
-
-      <div class="achievement-card reveal reveal-delay-3">
-        <div class="achievement-icon">🛡️</div>
-        <div class="achievement-title">캐시 서버 장애 자동 복구</div>
-        <div class="achievement-desc">
-          응답 속도를 높이기 위한 캐시 서버가 갑자기 다운돼도 서비스가 중단되지 않도록 자동 복구 시스템을 구축했습니다.
-          장애 시 DB에서 직접 데이터를 가져오는 fallback 구조로, 사용자는 서비스를 계속 이용할 수 있습니다.
-        </div>
-        <span class="achievement-impact">🔄 Redis 장애 → DB fallback 자동 전환</span>
-      </div>
-
-      <div class="achievement-card reveal reveal-delay-1">
-        <div class="achievement-icon">📊</div>
-        <div class="achievement-title">실시간 학습 통계 대시보드</div>
-        <div class="achievement-desc">
-          구독자 수, 월간 활성 사용자, 이탈률, 콘텐츠별 학습 현황을 한 화면에서 볼 수 있는 통계 대시보드를 설계부터 구현까지 담당했습니다.
-          경영진이 데이터를 기반으로 의사결정을 내릴 수 있도록 6가지 핵심 지표를 제공합니다.
-        </div>
-        <span class="achievement-impact">📈 6개 지표 · 일별/월별 실시간 집계</span>
-      </div>
-
-      <div class="achievement-card reveal reveal-delay-2">
-        <div class="achievement-icon">🎙️</div>
-        <div class="achievement-title">말하는 수학 기능 구현</div>
-        <div class="achievement-desc">
-          아이들이 수학 문제를 목소리로 풀어보는 '말하는 수학' 기능을 백엔드부터 관리자 화면까지 전체를 구현했습니다.
-          브라우저 보안 정책으로 인해 녹음 파일 재생이 막히는 문제도 서버 중계 방식으로 해결했습니다.
-        </div>
-        <span class="achievement-impact">🔊 녹음 · 재생 · 관리 전체 구현</span>
-      </div>
-
-      <div class="achievement-card reveal reveal-delay-3">
-        <div class="achievement-icon">⚙️</div>
-        <div class="achievement-title">동시 요청 충돌 문제 해결</div>
-        <div class="achievement-desc">
-          수천 명이 동시에 학습을 시작할 때 간헐적으로 서버 오류가 발생하는 문제를 분석해 해결했습니다.
-          동일한 요청이 동시에 들어와도 데이터가 깨지지 않는 안전한 처리 구조로 개선했습니다.
-        </div>
-        <span class="achievement-impact">🔒 Race Condition 제거 · 서비스 안정화</span>
-      </div>
-
-    </div>
-  </section>
 </div>
 
-<!-- ── SKILLS ── -->
-<section id="skills">
-  <div class="section-label">Skills</div>
-  <h2 class="section-title">기술 스택</h2>
-  <div class="skills-grid">
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Backend</div>
-      <div class="skill-list">
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">Spring Boot</span>
-        <span class="skill-tag">JPA / Hibernate</span>
-        <span class="skill-tag">MyBatis</span>
-        <span class="skill-tag">Node.js</span>
+<!-- BLOG -->
+<div>
+  <div class="section-wrap" style="padding-bottom:120px;">
+    <div class="blog-banner r">
+      <div>
+        <h2>기술 블로그</h2>
+        <p style="margin-top:10px;">공부한 것들, 삽질한 것들을 기록합니다.</p>
       </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Database & Cache</div>
-      <div class="skill-list">
-        <span class="skill-tag">MySQL</span>
-        <span class="skill-tag">MariaDB</span>
-        <span class="skill-tag">Redis</span>
-        <span class="skill-tag">MongoDB</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Frontend</div>
-      <div class="skill-list">
-        <span class="skill-tag">Vue.js</span>
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">Angular</span>
-        <span class="skill-tag">TypeScript</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-title">Infra & DevOps</div>
-      <div class="skill-list">
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">AWS</span>
-        <span class="skill-tag">Kubernetes</span>
-        <span class="skill-tag">Nginx</span>
-      </div>
+      <a href="/blog" class="btn btn-glow">블로그 보기 →</a>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ── BLOG ── -->
-<section id="blog">
-  <div class="blog-cta reveal">
-    <h2>기술 블로그</h2>
-    <p>공부한 것들, 삽질한 것들을 기록하는 공간입니다.</p>
-    <a href="/blog" class="btn-white">블로그 보러가기 →</a>
-  </div>
-</section>
-
-<!-- ── FOOTER ── -->
+<!-- FOOTER -->
 <footer>
-  <div class="footer-links">
-    <a href="https://github.com/dpdtydz" target="_blank">GitHub</a>
+  <div class="footer-wrap">
+    <div class="footer-links">
+      <a href="https://github.com/dpdtydz" target="_blank">GitHub</a>
+      <a href="mailto:dpdtydz@donga.ac.kr">Email</a>
+    </div>
+    <div class="footer-copy">© 2026 이호상</div>
   </div>
-  <div class="footer-copy">© 2026 이호상. All rights reserved.</div>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(el => {
-      if (el.isIntersecting) el.target.classList.add('visible');
-    });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.r').forEach(el => io.observe(el));
 </script>
-
 </body>
 </html>

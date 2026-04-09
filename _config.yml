@@ -14,14 +14,12 @@ author: Leehosang
 # --- List of links in the navigation bar --- #
 
 navbar-links:
+  포트폴리오: ""
   About Me: "aboutme"
   Resources:
     - Today I Learned: "https://dpdtydz.github.io/2021-06-03-TIL/"
     - Weekley I Learned: "http://dpdtydz.github.io/1999-01-01-TIL/"
     - My resume: "http://dpdtydz.github.io/1999-01-02-TIL/"
-
-    
-  Author's home: "https://www.tildp.shop/"
 
 # --- Logo --- #
 
@@ -101,16 +99,16 @@ post_search: true
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#EAEAEA"
-navbar-text-col: "#404040"
-navbar-border-col: "#DDDDDD"
-page-col: "#FFFFFF"
-text-col: "#404040"
-link-col: "#008AFF"
-hover-col: "#0085A1"
-footer-col: "#EAEAEA"
-footer-text-col: "#777777"
-footer-link-col: "#404040"
+navbar-col: "#0d1117"
+navbar-text-col: "#e8eaf0"
+navbar-border-col: "#1e2535"
+page-col: "#07090f"
+text-col: "#c9d1d9"
+link-col: "#6c63ff"
+hover-col: "#a78bfa"
+footer-col: "#0d1117"
+footer-text-col: "#8892a4"
+footer-link-col: "#e8eaf0"
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
