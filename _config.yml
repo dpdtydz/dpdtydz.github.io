@@ -14,7 +14,7 @@ author: Leehosang
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  포트폴리오: ""
+  포트폴리오: "https://dpdtydz.github.io"
   About Me: "aboutme"
   Resources:
     - Today I Learned: "https://dpdtydz.github.io/2021-06-03-TIL/"
