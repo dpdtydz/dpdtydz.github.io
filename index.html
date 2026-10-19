@@ -266,7 +266,7 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-inner">
-    <div class="hero-eyebrow r">Backend Developer · 4년차</div>
+    <div class="hero-eyebrow r">Backend Developer · 5년차</div>
     <h1 class="r d1">
       장애가 나도<br>
       <em>서비스는 살아있다</em>
@@ -282,8 +282,12 @@
     </div>
     <div class="hero-stats r d4">
       <div class="stat-item">
-        <div class="stat-num">3<span>+</span></div>
+        <div class="stat-num">4<span>+</span></div>
         <div class="stat-label">years of experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2,900<span>+</span></div>
+        <div class="stat-label">commits on 6 repos</div>
       </div>
       <div class="stat-item">
         <div class="stat-num">40<span>+</span></div>
@@ -319,14 +323,15 @@
         <div class="exp-company">아이스크림에듀</div>
         <div class="exp-role">학습서비스개발팀 · Backend Engineer</div>
         <div class="exp-desc">
-          리틀홈런 학습 플랫폼 백엔드 전담. 공용 서버에서 전용 서버 분리, 캐시 장애 대응,
-          배포 무중단화, 통계 대시보드 설계·구현까지 서비스 전반을 책임지고 있습니다.
+          리틀홈런 학습 플랫폼 백엔드 전담. 운영 어드민 · 학습 API · 게임/영어 학습 서버까지 WAS 4개를 맡아
+          설계 · 구현 · 운영 · 배포합니다. 공용 서버에서 전용 서버 분리, 캐시 장애 대응, 배포 무중단화,
+          통계 대시보드, 보안 강화와 MySQL 8.0 업그레이드 대비까지 서비스 전반을 책임지고 있습니다.
         </div>
         <div class="exp-pills">
           <span class="pill">Java 11</span><span class="pill">Spring Boot 2.7</span>
-          <span class="pill">JPA</span><span class="pill">MyBatis</span>
-          <span class="pill">MySQL</span><span class="pill">MariaDB</span>
-          <span class="pill">Redis</span><span class="pill">Angular</span>
+          <span class="pill">Spring Batch</span><span class="pill">JPA</span><span class="pill">MyBatis</span>
+          <span class="pill">OpenFeign</span><span class="pill">MySQL</span><span class="pill">MariaDB</span>
+          <span class="pill">Redis</span><span class="pill">Angular</span><span class="pill">Jenkins</span>
         </div>
       </div>
     </div>
@@ -388,10 +393,10 @@
 
       <div class="ach-card r d1">
         <div class="ach-icon">📊</div>
-        <div class="ach-num">6</div>
-        <div class="ach-title">실시간 학습 통계 대시보드</div>
-        <div class="ach-desc">구독자 수, 월간 활성 사용자, 이탈률, 콘텐츠별 학습 현황을 한 화면에서 볼 수 있는 통계 시스템을 설계부터 구현까지 담당했습니다.</div>
-        <div class="ach-tag">6개 핵심 지표</div>
+        <div class="ach-num">34</div>
+        <div class="ach-title">학습 통계 대시보드</div>
+        <div class="ach-desc">구독 · 활성 사용자 · 콘텐츠 이용 등 34개 지표를 배치로 미리 집계하고 지난 기간은 백필로 채우는 구조를 설계부터 운영까지 맡았습니다. 화면마다 달랐던 회원 기준도 하나로 맞췄습니다.</div>
+        <div class="ach-tag">사전집계 + 백필</div>
       </div>
 
       <div class="ach-card r d2">
@@ -410,6 +415,30 @@
         <div class="ach-tag">Race Condition 제거</div>
       </div>
 
+      <div class="ach-card r d1">
+        <div class="ach-icon">🔐</div>
+        <div class="ach-num">61</div>
+        <div class="ach-title">보안 필터 재설계</div>
+        <div class="ach-desc">테스트가 하나도 없던 서버의 인증 필터를 정책 객체로 분리하고 TDD로 61건을 쌓았습니다. 판단마다 감사 로그를 남겨, 정상 요청이 막히지 않는지 먼저 확인하고 차단으로 넘어가는 단계적 적용 방식을 택했습니다.</div>
+        <div class="ach-tag">관측 → 차단 2단계</div>
+      </div>
+
+      <div class="ach-card r d2">
+        <div class="ach-icon">🐬</div>
+        <div class="ach-num">8.0</div>
+        <div class="ach-title">MySQL 8.0 업그레이드 대비</div>
+        <div class="ach-desc">4개 서비스의 쿼리 · 엔티티 · DDL을 전수 조사해, 8.0에서 에러가 나는 쿼리뿐 아니라 에러 없이 결과 순서만 바뀌는 쿼리까지 미리 고쳤습니다. 조사 중 몇 달째 조용히 실패하던 리포트 갱신도 찾아냈습니다.</div>
+        <div class="ach-tag">조용한 오동작까지 선수정</div>
+      </div>
+
+      <div class="ach-card r d3">
+        <div class="ach-icon">🔁</div>
+        <div class="ach-num">0</div>
+        <div class="ach-title">'빈 성공' 없는 집계 배치</div>
+        <div class="ach-desc">트랜잭션 안에서 외부 API 응답을 기다리며 DB 커넥션을 붙잡던 집계 배치를 "조회는 밖, 저장만 트랜잭션"으로 나누고, 실패를 빈 결과로 덮어쓰던 응답을 오류로 바꿔 알림이 오게 했습니다.</div>
+        <div class="ach-tag">트랜잭션 안 외부 호출 0건</div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -422,14 +451,15 @@
     <div class="skills-layout">
       <div class="skills-intro r d1">
         <h3>주로 Java · Spring 생태계에서 일합니다.</h3>
-        <p style="margin-top:16px;">안정적인 서버 운영과 빠른 장애 대응에 집중해왔습니다. 데이터베이스 설계부터 캐싱 전략, API 설계, 관리자 UI 개발까지 서비스를 끝까지 책임지는 구조로 만들어가고 있습니다.</p>
+        <p style="margin-top:16px;">안정적인 서버 운영과 빠른 장애 대응에 집중해왔습니다. 데이터베이스 설계부터 캐싱 전략, API 설계, 배치 집계, 보안, 관리자 UI 개발까지 서비스를 끝까지 책임지는 구조로 만들어가고 있습니다.</p>
       </div>
       <div class="skills-groups r d2">
         <div>
           <div class="skill-group-label">Backend</div>
           <div class="skill-chips">
             <span class="chip main">Java</span><span class="chip main">Spring Boot</span>
-            <span class="chip main">JPA / Hibernate</span><span class="chip">MyBatis</span>
+            <span class="chip main">JPA / Hibernate</span><span class="chip main">Spring Batch</span><span class="chip">MyBatis</span>
+            <span class="chip">OpenFeign</span><span class="chip">JUnit5 · Mockito</span>
             <span class="chip">Node.js</span><span class="chip">Python</span>
           </div>
         </div>
@@ -450,8 +480,9 @@
         <div>
           <div class="skill-group-label">Infra</div>
           <div class="skill-chips">
-            <span class="chip">Docker</span><span class="chip">Nginx</span>
+            <span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">Tomcat</span>
             <span class="chip">AWS</span><span class="chip">Kubernetes</span>
+            <span class="chip">Jenkins</span><span class="chip">GitLab</span><span class="chip">Scouter APM</span>
           </div>
         </div>
       </div>
@@ -477,7 +508,6 @@
   <div class="footer-wrap">
     <div class="footer-links">
       <a href="https://github.com/dpdtydz" target="_blank">GitHub</a>
-      <a href="mailto:dpdtydz@donga.ac.kr">Email</a>
     </div>
     <div class="footer-copy">© 2026 이호상</div>
   </div>
