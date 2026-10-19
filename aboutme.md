@@ -6,7 +6,7 @@ subtitle: Actually, I don't know myself well either.
 
 # 안녕하세요, 이호상입니다! / Hello, I'm Hosang Lee! 👋
 
-[한국어](#korean) | [English](#english)
+[한국어](#korean) · [English](#english)
 
 ---
 

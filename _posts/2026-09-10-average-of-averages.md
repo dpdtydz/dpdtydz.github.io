@@ -16,9 +16,9 @@ tags: [Java, JPA, Data, Backend, Troubleshooting]
 학습시간은 클라이언트가 보내지 않는다. **서버가 시각 차이로 계산한다.**
 
 ```
-학습 시작 (/init)  → startAt 기록
-학습 중 저장 (여러 번) → studyTime 누적
-학습 종료 저장       → studyTime 누적
+학습 시작 (/init)       → startAt 기록
+학습 중 저장 (여러 번)  → studyTime 누적
+학습 종료 저장          → studyTime 누적
 ```
 
 앱은 학습 중간중간 진행 상태를 저장한다. 콘텐츠 종류에 따라 저장이 한 번일 때도, 대여섯 번일 때도 있다.

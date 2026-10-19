@@ -1,136 +1,30 @@
 ---
 layout: base
 ---
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
-    <style>
-  /* 전체 레이아웃 */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-}
-
-/* 그리드 컨테이너 */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-/* 카드 스타일 */
-.card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.card h2 {
-    margin-top: 0;
-    font-size: 1.2em;
-    color: #2c3e50;
-}
-
-.card-date {
-    font-size: 0.9em;
-    color: #7f8c8d;
-    margin-bottom: 10px;
-}
-
-.card-content {
-    flex-grow: 1;
-    font-size: 0.95em;
-    margin-bottom: 15px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
-.read-more {
-    align-self: flex-start;
-    background: #3498db;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 0.9em;
-    transition: background 0.3s ease;
-}
-
-.read-more:hover {
-    background: #2980b9;
-}
-
-/* Older Posts 버튼 */
-.older-posts {
-    display: inline-block;
-    background: #2ecc71;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 1em;
-    transition: background 0.3s ease;
-}
-
-.older-posts:hover {
-    background: #27ae60;
-}
-
-/* 반응형 디자인 */
-@media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-}
-    </style>
-</head>
-<body>
-    {% include header.html type="page" %}
-    <div class="container{% if page.full-width %}-fluid{% endif %}">
-        <div class="row">
-            <div class="{% if page.full-width %}col{% else %}col-xl-8 offset-xl-2 col-lg-10 offset-lg-1{% endif %}">
-                {% if page.before-content %}
-                    <div class="before-content">
-                        {% for file in page.before-content %}
-                            {% include {{ file }} %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <div class="content">
-                    {{ content }}
+{% include header.html type="page" %}
+<div class="container{% if page.full-width %}-fluid{% endif %}">
+    <div class="row">
+        <div class="{% if page.full-width %}col{% else %}col-xl-8 offset-xl-2 col-lg-10 offset-lg-1{% endif %}">
+            {% if page.before-content %}
+                <div class="before-content">
+                    {% for file in page.before-content %}
+                        {% include {{ file }} %}
+                    {% endfor %}
                 </div>
-                {% if page.after-content %}
-                    <div class="after-content">
-                        {% for file in page.after-content %}
-                            {% include {{ file }} %}
-                        {% endfor %}
-                    </div>
-                {% endif %}
-                <div class="comments">
-                    {% include comments.html %}
+            {% endif %}
+            <div class="content">
+                {{ content }}
+            </div>
+            {% if page.after-content %}
+                <div class="after-content">
+                    {% for file in page.after-content %}
+                        {% include {{ file }} %}
+                    {% endfor %}
                 </div>
+            {% endif %}
+            <div class="comments">
+                {% include comments.html %}
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
