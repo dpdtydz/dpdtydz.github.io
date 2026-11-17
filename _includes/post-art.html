@@ -1,0 +1,13 @@
+{% assign artwork = site.data.artwork | where: 'url', include.post.url | first %}{% assign art_variant = artwork.variant | default: 'notes' %}
+<div class="post-art art--{{ art_variant }}" aria-hidden="true">
+  <span class="art-topic">{{ artwork.topic | default: include.post.tags.first | default: '개발 노트' | escape }}</span>
+  {% case art_variant %}
+  {% when 'metrics' %}<div class="art-fraction"><span>active users</span><span>eligible users</span></div><span class="art-note">정의가 같아야, 지표도 같다.</span>
+  {% when 'resilience' %}<div class="art-equation">empty <span>≠</span><br>success</div><span class="art-note">실패를 숨기지 않는 구조</span>
+  {% when 'integrity' %}<div class="art-integrity"><span>sha384-</span><strong>trust,<br>verified.</strong></div><span class="art-note">같은 파일, 같은 해시.</span>
+  {% when 'security' %}<div class="art-security"><span>observe</span><span class="art-arrow">→</span><strong>enforce</strong></div><span class="art-note">먼저 관측하고, 그다음 차단하기.</span>
+  {% when 'database' %}<div class="art-database"><span>BEGIN</span><strong>COMMIT</strong><span class="art-cursor"></span></div><span class="art-note">데이터가 지나가는 길을 다듬다.</span>
+  {% when 'structure' %}<div class="art-structure"><span>&#123; code &#125;</span><span>↓</span><strong>structure</strong></div><span class="art-note">겉으로 보이지 않는 연결들</span>
+  {% else %}<div class="art-notes">&#123;<span>thoughts<br>& code</span>&#125;</div><span class="art-note">생각하고, 만들고, 기록하기.</span>
+  {% endcase %}
+</div>

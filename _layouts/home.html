@@ -2,21 +2,18 @@
 layout: base
 ---
 <main id="main" class="container page-main archive-main">
-  <header class="page-intro"><h1>{{ page.title | escape }}</h1><p class="page-lead">{{ page.subtitle | escape }}</p></header>
+  <header class="archive-header"><div><p class="eyebrow">Writing</p><h1>문제를 지나온<br>기록들<span class="name-period">.</span></h1></div><p>공부한 것들, 삽질한 것들을 기록합니다.<br>운영하며 마주친 문제와,<br>그 원인을 찾아가는 과정에 대해.</p></header>
   {{ content }}
-  <div class="archive-tools"><p class="caption" id="archive-count" role="status" aria-live="polite">전체 {{ site.posts.size }}편</p><a class="text-link" href="{{ '/tags' | relative_url }}">태그 모아보기 <span aria-hidden="true">↗</span></a></div>
-  <form id="archive-search" class="archive-search" role="search" hidden>
-    <div class="search-field"><label for="post-query">글 찾기</label><input type="search" id="post-query" name="q" placeholder="제목, 내용, 태그로 검색" autocomplete="off"></div>
-    <div class="tag-field"><label for="tag-filter">태그</label><select id="tag-filter" name="tag"><option value="">모든 태그</option>{% assign sorted_tags = site.tags | sort %}{% for tag in sorted_tags %}<option value="{{ tag[0] | escape }}">{{ tag[0] | escape }} ({{ tag[1].size }})</option>{% endfor %}</select></div>
-    <button type="reset" class="reset-button">초기화</button>
-  </form>
-  <div class="archive-list" id="archive-list">
-    {% assign current_year = '' %}{% for post in site.posts %}{% assign post_year = post.date | date: '%Y' %}
-    {% if post_year != current_year %}<h2 class="archive-year" data-year="{{ post_year }}">{{ post_year }}</h2>{% assign current_year = post_year %}{% endif %}
-    <article class="archive-post" data-year="{{ post_year }}" data-tags="{{ post.tags | jsonify | escape }}" data-search="{{ post.title | append: ' ' | append: post.content | strip_html | normalize_whitespace | escape }}">
-      <time class="caption" datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%m.%d' }}</time>
-      <div><h3><a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>{% if post.subtitle %}<p class="archive-subtitle">{{ post.subtitle | escape }}</p>{% endif %}<p class="post-excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 140 | escape }}</p>{% if post.tags.size > 0 %}<div class="tag-links">{% for tag in post.tags limit: 4 %}<a href="{{ '/tags' | relative_url }}#{{ tag | uri_escape }}">{{ tag | escape }}</a>{% endfor %}</div>{% endif %}</div>
-    </article>{% else %}<p>새로운 기록을 준비하고 있습니다.</p>{% endfor %}
-  </div>
-  <div id="archive-empty" class="empty-state" hidden><h2>찾는 글이 없습니다.</h2><p>검색어를 바꾸거나 태그를 ‘모든 태그’로 선택해 보세요.</p><button type="button" class="reset-button" id="clear-search">전체 글 보기</button></div>
+  {% if site.posts.size > 0 %}<section class="archive-featured" id="archive-featured" aria-label="최근에 쓴 글">{% assign latest_post = site.posts | first %}{% include featured-post.html post=latest_post %}</section>{% endif %}
+  <section class="all-writing" id="all-posts" aria-labelledby="all-posts-title">
+    <div class="archive-tools"><div><h2 id="all-posts-title">모든 기록</h2><p class="caption" id="archive-count" role="status" aria-live="polite">전체 {{ site.posts.size }}편</p></div><a class="quiet-link" href="{{ '/tags' | relative_url }}">태그 모아보기 <span aria-hidden="true">↗</span></a></div>
+    <form id="archive-search" class="archive-search" role="search" hidden><div class="search-field"><label for="post-query">글 찾기</label><input type="search" id="post-query" name="q" placeholder="어떤 기록을 찾고 있나요?" autocomplete="off"></div><div class="tag-field"><label for="tag-filter">태그</label><select id="tag-filter" name="tag"><option value="">모든 태그</option>{% assign sorted_tags = site.tags | sort %}{% for tag in sorted_tags %}<option value="{{ tag[0] | escape }}">{{ tag[0] | escape }} ({{ tag[1].size }})</option>{% endfor %}</select></div><button type="reset" class="reset-button">초기화</button></form>
+    <div class="archive-list" id="archive-list">{% assign current_year = '' %}{% for post in site.posts %}{% assign post_year = post.date | date: '%Y' %}{% if post_year != current_year %}<h2 class="archive-year" data-year="{{ post_year }}">{{ post_year }}<span>기록</span></h2>{% assign current_year = post_year %}{% endif %}
+      <article class="archive-post{% if forloop.index <= 6 %} has-art{% endif %}" data-year="{{ post_year }}" data-tags="{{ post.tags | jsonify | escape }}" data-search="{{ post.title | append: ' ' | append: post.content | strip_html | normalize_whitespace | escape }}">
+        {% if forloop.index <= 6 %}<a class="archive-art" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">{% include post-art.html post=post %}</a>{% endif %}
+        <div class="story-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time><span>{{ post.tags | first | default: '기록' | escape }}</span></div><h3><a class="story-title" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>{% if post.subtitle %}<p class="archive-subtitle">{{ post.subtitle | escape }}</p>{% endif %}<p class="post-excerpt">{{ post.excerpt | strip_html | normalize_whitespace | truncate: 130 | escape }}</p>{% if post.tags.size > 0 %}<div class="tag-links">{% for tag in post.tags limit: 4 %}<a href="{{ '/tags' | relative_url }}#{{ tag | uri_escape }}">{{ tag | escape }}</a>{% endfor %}</div>{% endif %}
+      </article>{% else %}<p>새로운 기록을 준비하고 있습니다.</p>{% endfor %}
+    </div>
+    <div id="archive-empty" class="empty-state" hidden><h2>찾는 글이 없습니다.</h2><p>검색어를 바꾸거나 태그를 ‘모든 태그’로 선택해 보세요.</p><button type="button" class="reset-button" id="clear-search">전체 글 보기</button></div>
+  </section>
 </main>

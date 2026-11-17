@@ -1,0 +1,36 @@
+- url: /2026-10-14-metric-denominator/
+  variant: metrics
+  topic: 데이터 · 지표 정의
+- url: /2026-09-10-average-of-averages/
+  variant: metrics
+  topic: 데이터 · 집계
+- url: /2026-10-08-empty-success-fallback/
+  variant: resilience
+  topic: 장애 대응 · 배치
+- url: /2026-04-03-redis-fallback/
+  variant: resilience
+  topic: Redis · 장애 대응
+- url: /2026-04-16-graceful-shutdown-502/
+  variant: resilience
+  topic: 운영 · 무중단 배포
+- url: /2026-10-08-cdn-sri/
+  variant: integrity
+  topic: 브라우저 · 보안
+- url: /2026-09-15-legacy-security-gate-observe-mode/
+  variant: security
+  topic: 인증 · 정책 설계
+- url: /2026-10-01-log-pii-masking/
+  variant: security
+  topic: 로그 · 개인정보
+- url: /2026-10-06-pk-binary-search-daily-slice/
+  variant: database
+  topic: MySQL · 조회 전략
+- url: /2026-10-02-dbcp2-default-lifetime/
+  variant: database
+  topic: DB · 커넥션 풀
+- url: /2026-07-20-dead-code-callgraph/
+  variant: structure
+  topic: 코드 · 구조
+- url: /2026-09-15-logback-two-configs/
+  variant: structure
+  topic: 로그 · 설정

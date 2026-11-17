@@ -58,6 +58,7 @@
         item.append(link); list.append(item);
       });
       toc.hidden = false;
+      toc.open = window.matchMedia('(min-width: 1000px)').matches;
     }
   }
 })();
