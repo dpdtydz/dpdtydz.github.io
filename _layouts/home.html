@@ -55,7 +55,7 @@ layout: page
         {{ post.excerpt | strip_html | xml_escape | truncatewords: excerpt_length }}
         {% assign excerpt_word_count = post.excerpt | number_of_words %}
         {% if post.content != post.excerpt or excerpt_word_count > excerpt_length %}
-          <a href="{{ post.url | absolute_url }}" class="read-more-link">Read More</a>
+          <a href="{{ post.url | absolute_url }}" class="read-more-link" aria-label="{{ post.title }} 자세히 보기">&rarr;</a>
         {% endif %}
       </div>
       {% endunless %}
@@ -84,15 +84,16 @@ layout: page
   }
   
   .post-card {
-    background-color: #fff;
+    background: var(--surface, #161b27);
+    border: 1px solid rgba(255, 255, 255, 0.07);
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
   }
-  
+
   .post-card:hover {
     transform: translateY(-5px);
+    border-color: rgba(167, 139, 250, 0.4);
   }
   
   .post-image {
@@ -118,13 +119,13 @@ layout: page
   .post-title {
     margin: 0 0 0.5rem;
     font-size: 1.5rem;
-    color: #333;
+    color: var(--text, #e8eaf0);
   }
   
   .post-subtitle {
     margin: 0 0 1rem;
     font-size: 1rem;
-    color: #666;
+    color: var(--text-muted, #8892a4);
   }
   
   .post-meta {
@@ -133,7 +134,7 @@ layout: page
     align-items: center;
     margin-bottom: 1rem;
     font-size: 0.9rem;
-    color: #888;
+    color: var(--text-muted, #8892a4);
   }
   
   .post-tags {
@@ -143,8 +144,8 @@ layout: page
   }
   
   .tag {
-    background-color: #f0f0f0;
-    color: #333;
+    background: rgba(108, 99, 255, 0.12);
+    color: var(--accent2, #a78bfa);
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     text-decoration: none;
@@ -153,15 +154,22 @@ layout: page
   
   .post-excerpt {
     font-size: 0.9rem;
-    color: #555;
+    color: var(--text-muted, #8892a4);
   }
   
   .read-more-link {
     display: inline-block;
     margin-top: 1rem;
-    color: #007bff;
+    color: var(--text-muted, #8892a4);
     text-decoration: none;
-    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: 400;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .read-more-link:hover {
+    color: var(--accent2, #a78bfa);
+    transform: translateX(4px);
   }
   
   .pagination-nav {
@@ -171,15 +179,15 @@ layout: page
   }
   
   .pagination-link {
-    background-color: #007bff;
+    background: var(--accent, #6c63ff);
     color: #fff;
     padding: 0.5rem 1rem;
     border-radius: 4px;
     text-decoration: none;
     transition: background-color 0.3s ease;
   }
-  
+
   .pagination-link:hover {
-    background-color: #0056b3;
+    background: var(--accent2, #a78bfa);
   }
 </style>
