@@ -42,13 +42,13 @@ round-avatar: true
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
   email: "dpdtydz@donga.ac.kr"
-#  facebook: deanattali
+  #  facebook: deanattali
   github: dpdtydz
-#  twitter: daattali
-#  patreon: DeanAttali
-#  youtube: c/daattali
-#  medium: yourname
-#  reddit: yourname
+  #  twitter: daattali
+  #  patreon: DeanAttali
+  #  youtube: c/daattali
+  #  medium: yourname
+  #  reddit: yourname
   linkedin: dpdtydz
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
@@ -205,16 +205,14 @@ kramdown:
 
 # Default YAML values (more information on Jekyll's site)
 defaults:
-  -
-    scope:
+  - scope:
       path: ""
       type: "posts"
     values:
       layout: "post"
-      comments: true  # add comments to all blog posts
+      comments: true # add comments to all blog posts
       social-share: true # add social media sharing buttons to all blog posts
-  -
-    scope:
+  - scope:
       path: "" # any file that's not a post will be a "page" layout by default
     values:
       layout: "page"
@@ -234,6 +232,7 @@ exclude:
 plugins:
   - jekyll-paginate
   - jekyll-sitemap
+cloudflare_analytics: 1435fd6117544e399e799bb535b6374b
 
 # Beautiful Jekyll / Dean Attali
 # 2fc73a3a967e97599c9763d05e564189
