@@ -2,7 +2,7 @@
 layout: base
 ---
 <main id="main" class="container page-main">
-  <header class="page-intro"><span class="steel-fragment" aria-hidden="true"></span><h1>{{ page.title | escape }}</h1>{% if page.subtitle %}<p class="page-lead">{{ page.subtitle | escape }}</p>{% endif %}</header>
+  <header class="page-intro"><h1>{{ page.title | escape }}</h1>{% if page.subtitle %}<p class="page-lead">{{ page.subtitle | escape }}</p>{% endif %}</header>
   {% if page.before-content %}{% for file in page.before-content %}{% include {{ file }} %}{% endfor %}{% endif %}
   <div class="prose page-prose">{{ content }}</div>
   {% if page.after-content %}{% for file in page.after-content %}{% include {{ file }} %}{% endfor %}{% endif %}

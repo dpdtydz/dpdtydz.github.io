@@ -30,8 +30,6 @@ nav { display: flex; gap: 28px; }
 nav a { font-size: 14px; text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
 nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
 .intro { padding-top: 88px; }
-.steel-fragment { display: block; width: 36px; height: 8px; background: linear-gradient(to right, var(--steel) 0 28px, var(--yellow) 28px); clip-path: polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%); transform: rotate(-12deg); margin-bottom: 16px; }
-.intro .steel-fragment { margin-bottom: 24px; }
 h1, h2 { font-family: var(--font-heading); font-weight: 600; }
 h1 { font-size: 56px; line-height: 1.2; letter-spacing: -.035em; }
 h2 { font-size: 28px; line-height: 1.35; letter-spacing: -.025em; }
