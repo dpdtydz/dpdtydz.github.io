@@ -10,5 +10,6 @@
   <script src="{{ '/assets/js/site.js' | relative_url }}?v=20261117c" defer></script>
   {% if page.ext-js %}{% for js in page.ext-js %}{% include ext-js.html js=js %}{% endfor %}{% endif %}
   {% if page.js %}{% for js in page.js %}<script src="{{ js | relative_url }}" defer></script>{% endfor %}{% endif %}
+  {% include cloudflare_analytics.html %}
 </body>
 </html>
