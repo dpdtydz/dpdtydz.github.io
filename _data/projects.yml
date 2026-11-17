@@ -1,0 +1,72 @@
+- id: server
+  title: 학습 서버 독립 분리
+  result: 40+
+  result_label: API 이관
+  description: 초등·중등·리틀홈런이 함께 쓰던 공용 서버에서 리틀홈런 전용 서버를 완전히 분리. 코드 한 줄이 전 서비스에 영향을 주던
+    구조에서 벗어났습니다.
+  outcome: 7개 도메인 이관
+  article_url: null
+- id: deployment
+  title: 배포 중 서비스 무중단
+  result: "0"
+  result_label: 배포 중 502 오류
+  description: 배포할 때마다 사용자들이 겪던 502 오류를 해결. 서버가 요청을 모두 처리한 뒤 안전하게 종료되도록 바꿔 배포 중에도
+    학습이 끊기지 않습니다.
+  outcome: 502 에러 제거
+  article_url: /2026-04-16-graceful-shutdown-502/
+- id: cache
+  title: 캐시 서버 장애 자동 복구
+  result: ∞
+  result_label: 캐시 장애에 대응
+  description: Redis 캐시가 갑자기 다운돼도 서비스가 멈추지 않도록 자동 복구 시스템 구축. 장애 시 DB로 자동 전환되어 사용자는
+    서비스를 계속 이용할 수 있습니다.
+  outcome: Redis → DB fallback
+  article_url: /2026-04-03-redis-fallback/
+- id: analytics
+  title: 학습 통계 대시보드
+  result: "34"
+  result_label: 학습 통계 지표
+  description: 구독 · 활성 사용자 · 콘텐츠 이용 등 34개 지표를 배치로 미리 집계하고 지난 기간은 백필로 채우는 구조를 설계부터
+    운영까지 맡았습니다. 화면마다 달랐던 회원 기준도 하나로 맞췄습니다.
+  outcome: 사전집계 + 백필
+  article_url: /2026-10-14-metric-denominator/
+- id: voice
+  title: 말하는 수학 기능 구현
+  result: E2E
+  result_label: 기능 전체 구현
+  description: 아이들이 수학 문제를 목소리로 풀어보는 기능을 백엔드부터 관리자 UI까지 전체 구현. 브라우저 보안 정책 차단 문제도
+    서버 프록시로 해결했습니다.
+  outcome: 녹음·재생·관리 전체
+  article_url: /2026-04-09-chrome-pna-proxy/
+- id: concurrency
+  title: 동시 요청 충돌 문제 해결
+  result: ~0
+  result_label: 동시 요청 충돌
+  description: 수천 명이 동시에 학습을 시작할 때 발생하는 간헐적 서버 오류를 분석·해결. 동일 요청이 동시에 들어와도 데이터가 깨지지
+    않는 구조로 개선했습니다.
+  outcome: Race Condition 제거
+  article_url: /2026-04-01-race-condition-duplicate-insert/
+- id: security
+  title: 보안 필터 재설계
+  result: "61"
+  result_label: 인증 필터 테스트
+  description: 테스트가 하나도 없던 서버의 인증 필터를 정책 객체로 분리하고 TDD로 61건을 쌓았습니다. 판단마다 감사 로그를 남겨,
+    정상 요청이 막히지 않는지 먼저 확인하고 차단으로 넘어가는 단계적 적용 방식을 택했습니다.
+  outcome: 관측 → 차단 2단계
+  article_url: /2026-09-15-legacy-security-gate-observe-mode/
+- id: mysql
+  title: MySQL 8.0 업그레이드 대비
+  result: "8.0"
+  result_label: 업그레이드 대비
+  description: 4개 서비스의 쿼리 · 엔티티 · DDL을 전수 조사해, 8.0에서 에러가 나는 쿼리뿐 아니라 에러 없이 결과 순서만
+    바뀌는 쿼리까지 미리 고쳤습니다. 조사 중 몇 달째 조용히 실패하던 리포트 갱신도 찾아냈습니다.
+  outcome: 조용한 오동작까지 선수정
+  article_url: null
+- id: batch
+  title: "'빈 성공' 없는 집계 배치"
+  result: "0"
+  result_label: 트랜잭션 안 외부 호출
+  description: 트랜잭션 안에서 외부 API 응답을 기다리며 DB 커넥션을 붙잡던 집계 배치를 "조회는 밖, 저장만 트랜잭션"으로
+    나누고, 실패를 빈 결과로 덮어쓰던 응답을 오류로 바꿔 알림이 오게 했습니다.
+  outcome: 트랜잭션 안 외부 호출 0건
+  article_url: /2026-10-08-empty-success-fallback/

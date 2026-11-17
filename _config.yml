@@ -6,7 +6,11 @@
 # --- Required options --- #
 
 # Name of website
-title: Leehosang Lab
+title: 이호상
+url: "https://dpdtydz.github.io"
+baseurl: ""
+language: ko
+description: "서버와 데이터를 다루는 백엔드 개발자 이호상의 기록과 포트폴리오."
 
 # Your name to show in the footer
 author: Leehosang
@@ -14,12 +18,9 @@ author: Leehosang
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  포트폴리오: "https://dpdtydz.github.io"
-  About Me: "aboutme"
-  Resources:
-    - Today I Learned: "https://dpdtydz.github.io/2021-06-03-TIL/"
-    - Weekley I Learned: "http://dpdtydz.github.io/1999-01-01-TIL/"
-    - My resume: "http://dpdtydz.github.io/1999-01-02-TIL/"
+  Work: "work"
+  Writing: "blog"
+  About: "aboutme"
 
 # --- Logo --- #
 
@@ -78,7 +79,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "https://www.tildp.shop/"
+url-pretty: "dpdtydz.github.io"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
@@ -99,16 +100,16 @@ post_search: true
 
 # Personalize the colours in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#0d1117"
-navbar-text-col: "#e8eaf0"
-navbar-border-col: "#1e2535"
-page-col: "#07090f"
-text-col: "#c9d1d9"
-link-col: "#6c63ff"
-hover-col: "#a78bfa"
-footer-col: "#0d1117"
-footer-text-col: "#8892a4"
-footer-link-col: "#e8eaf0"
+navbar-col: "#FFFFFF"
+navbar-text-col: "#252C30"
+navbar-border-col: "#B6C7D0"
+page-col: "#FFFFFF"
+text-col: "#252C30"
+link-col: "#465D6A"
+hover-col: "#465D6A"
+footer-col: "#FFFFFF"
+footer-text-col: "#626E76"
+footer-link-col: "#465D6A"
 
 # Alternatively, the navbar, footer, and page background can be set to an image
 # instead of colour
@@ -193,7 +194,7 @@ date_format: "%Y.%m.%d"
 # --- You don't need to touch anything below here (but you can if you want) --- #
 
 # Output options (more information on Jekyll's site)
-timezone: "Asia/seoul"
+timezone: "Asia/Seoul"
 markdown: kramdown
 highlighter: rouge
 permalink: /:year-:month-:day-:title/

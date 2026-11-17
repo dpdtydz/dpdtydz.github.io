@@ -1,10 +1,10 @@
 ---
 layout: page
-title: About me
-subtitle: Actually, I don't know myself well either.
+title: 소개
+subtitle: 개발하는 이호상, 일상의 이호상.
 ---
 
-# 안녕하세요, 이호상입니다! / Hello, I'm Hosang Lee! 👋
+안녕하세요, 이호상입니다. / Hello, I’m Hosang Lee.
 
 [한국어](#korean) · [English](#english)
 
