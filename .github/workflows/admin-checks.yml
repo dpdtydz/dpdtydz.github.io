@@ -1,0 +1,21 @@
+name: Administrator checks
+on:
+  push:
+    paths: ['_admin/**', 'assets/admin/**', 'assets/js/admin-auth.js', 'superhome/**', '.github/workflows/admin-checks.yml']
+  pull_request:
+    paths: ['_admin/**', 'assets/admin/**', 'assets/js/admin-auth.js', 'superhome/**', '.github/workflows/admin-checks.yml']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: _admin/package-lock.json
+      - run: npm ci --prefix _admin --no-audit --no-fund
+      - run: node --test _admin/core.test.mjs
+      - run: node --check assets/js/admin-auth.js
