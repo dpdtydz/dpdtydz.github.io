@@ -14,12 +14,9 @@ author: Leehosang
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  포트폴리오: "https://dpdtydz.github.io"
-  About Me: "aboutme"
-  Resources:
-    - Today I Learned: "https://dpdtydz.github.io/2021-06-03-TIL/"
-    - Weekley I Learned: "http://dpdtydz.github.io/1999-01-01-TIL/"
-    - My resume: "http://dpdtydz.github.io/1999-01-02-TIL/"
+  Work: "work"
+  Writing: "blog"
+  About: "aboutme"
 
 # --- Logo --- #
 
@@ -78,7 +75,7 @@ share-links-active:
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "https://www.tildp.shop/"
+url-pretty: "dpdtydz.github.io"
 
 # Excerpt word length - Truncate the excerpt of each post on the feed page to the specified number of words
 excerpt_length: 50
