@@ -1,0 +1,41 @@
+- id: server
+  title: 학습 서버 독립 분리
+  result: 40+
+  description: 초등·중등·리틀홈런이 함께 쓰던 공용 서버에서 리틀홈런 전용 서버를 완전히 분리. 코드 한 줄이 전 서비스에 영향을 주던
+    구조에서 벗어났습니다.
+  outcome: 7개 도메인 이관
+  article_url: null
+- id: deployment
+  title: 배포 중 서비스 무중단
+  result: "0"
+  description: 배포할 때마다 사용자들이 겪던 502 오류를 해결. 서버가 요청을 모두 처리한 뒤 안전하게 종료되도록 바꿔 배포 중에도
+    학습이 끊기지 않습니다.
+  outcome: 502 에러 제거
+  article_url: /2026-04-16-graceful-shutdown-502/
+- id: cache
+  title: 캐시 서버 장애 자동 복구
+  result: ∞
+  description: Redis 캐시가 갑자기 다운돼도 서비스가 멈추지 않도록 자동 복구 시스템 구축. 장애 시 DB로 자동 전환되어 사용자는
+    서비스를 계속 이용할 수 있습니다.
+  outcome: Redis → DB fallback
+  article_url: /2026-04-03-redis-fallback/
+- id: analytics
+  title: 실시간 학습 통계 대시보드
+  result: "6"
+  description: 구독자 수, 월간 활성 사용자, 이탈률, 콘텐츠별 학습 현황을 한 화면에서 볼 수 있는 통계 시스템을 설계부터 구현까지 담당했습니다.
+  outcome: 6개 핵심 지표
+  article_url: null
+- id: voice
+  title: 말하는 수학 기능 구현
+  result: E2E
+  description: 아이들이 수학 문제를 목소리로 풀어보는 기능을 백엔드부터 관리자 UI까지 전체 구현. 브라우저 보안 정책 차단 문제도
+    서버 프록시로 해결했습니다.
+  outcome: 녹음·재생·관리 전체
+  article_url: /2026-04-09-chrome-pna-proxy/
+- id: concurrency
+  title: 동시 요청 충돌 문제 해결
+  result: ~0
+  description: 수천 명이 동시에 학습을 시작할 때 발생하는 간헐적 서버 오류를 분석·해결. 동일 요청이 동시에 들어와도 데이터가 깨지지
+    않는 구조로 개선했습니다.
+  outcome: Race Condition 제거
+  article_url: /2026-04-01-race-condition-duplicate-insert/

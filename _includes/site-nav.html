@@ -1,0 +1,9 @@
+<header class="site-header container">
+  <a class="wordmark" href="{{ '/' | relative_url }}" aria-label="이호상 홈">이호상<span>Backend Developer</span></a>
+  <nav class="primary-nav" aria-label="주 메뉴">
+    <a href="{{ '/' | relative_url }}"{% if page.nav == 'home' %} aria-current="page"{% endif %}>홈</a>
+    <a href="{{ '/blog' | relative_url }}"{% if page.nav == 'writing' or page.layout == 'post' or page.url contains '/tags' %} aria-current="page"{% endif %}>글</a>
+    <a href="{{ '/work' | relative_url }}"{% if page.nav == 'work' %} aria-current="page"{% endif %}>포트폴리오</a>
+    <a href="{{ '/aboutme' | relative_url }}"{% if page.url contains '/aboutme' %} aria-current="page"{% endif %}>소개</a>
+  </nav>
+</header>
