@@ -145,6 +145,54 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
 
 ---
 
+## Task 2.5: 블로그 피드 카드 다크 톤 전환 + "Read More" → 화살표 (`_layouts/home.html`)
+
+> **중요(구현 중 발견):** 사진 2번 피드백 "Read More가 어색 / 색상이 혼자 달라 버튼이 제각각"의 실제 근원은 포트폴리오가 아니라 **블로그 피드 카드**(`_layouts/home.html`)다. 이 카드는 `background:#fff`(흰색), `#007bff` 파란 링크, 영어 "Read More"를 쓴다 — 다크 사이트에서 혼자 튄다.
+
+**Files:**
+- Modify: `_layouts/home.html` (58번째 줄 Read More 링크, 하단 `<style>` 블록 라이트 색상)
+
+**Interfaces:**
+- Consumes: 없음.
+- Produces: 블로그 피드(`/blog`)의 포스트 카드가 다크+보라 톤으로, "Read More" 없이 `→` 화살표(또는 카드 전체 클릭)로 통일.
+
+- [ ] **Step 1: "Read More" 라벨 제거 → 화살표**
+
+`_layouts/home.html` 58번째 줄:
+```html
+<a href="{{ post.url | absolute_url }}" class="read-more-link">Read More</a>
+```
+→ 교체:
+```html
+<a href="{{ post.url | absolute_url }}" class="read-more-link" aria-label="{{ post.title }} 자세히 보기">&rarr;</a>
+```
+
+- [ ] **Step 2: 피드 카드 `<style>`을 다크+보라로 교체**
+
+`_layouts/home.html` 하단 `<style>` 블록에서 라이트 색상들을 다크 변수로 교체. 교체 매핑(값은 index.html :root와 동일 계열):
+- `.post-card { background-color:#fff; box-shadow:0 4px 6px rgba(0,0,0,.1); }` → `background:var(--surface,#161b27); border:1px solid rgba(255,255,255,.07);`
+- `.post-title { color:#333; }` → `color:var(--text,#e8eaf0);`
+- `.post-subtitle { color:#666; }` → `color:var(--text-muted,#8892a4);`
+- `.post-meta { color:#888; }` → `color:var(--text-muted,#8892a4);`
+- `.tag { background-color:#f0f0f0; color:#333; }` → `background:rgba(108,99,255,.12); color:var(--accent2,#a78bfa);`
+- `.post-excerpt { color:#555; }` → `color:var(--text-muted,#8892a4);`
+- `.read-more-link { color:#007bff; font-weight:bold; }` → `color:var(--text-muted,#8892a4); font-size:1.2rem; font-weight:400;` + hover `color:var(--accent2,#a78bfa)`
+- `.pagination-link { background-color:#007bff; }` / hover `#0056b3` → `background:var(--accent,#6c63ff);` / hover `var(--accent2,#a78bfa)`
+- `.post-card:hover { transform:translateY(-5px); }` 유지 + `border-color:rgba(167,139,250,.4);` 추가
+
+`var(--...)`가 `home`→`page`→`base` 레이아웃 체인에서 정의돼 있지 않을 수 있으므로, **fallback 값을 반드시 함께** 넣는다(위 예시처럼 `var(--surface,#161b27)`). page 배경 자체가 다크인지 Task 4에서 확인.
+
+- [ ] **Step 3: 커밋**
+
+```bash
+git add _layouts/home.html
+git commit -m "fix: 블로그 피드 카드 다크 톤 전환, Read More를 화살표로 교체
+
+Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+```
+
+---
+
 ## Task 3: 새 홈 랜딩(허브) 페이지 작성 (`index.html` 교체)
 
 **Files:**
