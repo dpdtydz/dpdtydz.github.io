@@ -65,3 +65,9 @@ test('encrypted bundle matches tracked editor sources',()=>{
  const envelope=JSON.parse(fs.readFileSync(new URL('../assets/admin/workspace.enc.json',import.meta.url),'utf8'));
  assert.equal(envelope.sourceHash,fingerprint.digest('hex'));assert.equal(envelope.iterations,600000);assert.equal(envelope.algorithm,'AES-GCM');
 });
+
+test('default fetch retains the browser global receiver',async()=>{
+ const previous=globalThis.fetch;
+ globalThis.fetch=function(){if(this!==globalThis)throw new TypeError('Illegal invocation');return Promise.resolve(new Response(JSON.stringify({ok:true}),{status:200}));};
+ try{const client=new GitHubClient('test-only-token');assert.deepEqual(await client.request('/user'),{ok:true});}finally{globalThis.fetch=previous;}
+});

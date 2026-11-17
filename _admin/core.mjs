@@ -50,7 +50,7 @@ export function allowedPath(path) {
 }
 
 export class GitHubClient {
-  constructor(token,fetcher=fetch) { this.token=token; this.fetcher=fetcher; this.controller=new AbortController(); }
+  constructor(token,fetcher=fetch) { this.token=token; this.fetcher=fetcher.bind(globalThis); this.controller=new AbortController(); }
   disconnect() { this.token=''; this.controller.abort(); }
   async request(endpoint,method='GET',body) {
     const response = await this.fetcher(`https://api.github.com${endpoint}`,{
