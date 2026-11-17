@@ -6,8 +6,12 @@
 .hero-motto { margin-top: 22px; font-size: 30px; font-weight: 600; line-height: 1.45; letter-spacing: -.035em; }
 .hero-description { margin-top: 22px; font-size: 16px; line-height: 1.8; color: var(--text-secondary); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 28px; }
-.hero-visual { height: 448px; overflow: hidden; border-radius: 12px; background: var(--cloud-wash); }
-.hero-visual img { width: 100%; height: 100%; object-fit: cover; object-position: 58% center; }
+.hero-latest { min-width: 0; padding: 40px; background: var(--cloud-wash); border-radius: 10px; }
+.hero-latest > .eyebrow { margin-bottom: 28px; }
+.hero-latest h2 { font-size: 31px; line-height: 1.5; letter-spacing: -.035em; }
+.hero-latest .lead-excerpt { margin-top: 24px; font-size: 15px; line-height: 1.85; color: var(--text-secondary); }
+.hero-latest .story-meta { margin-top: 28px; }
+.hero-latest > .quiet-link { margin-top: 8px; }
 .recent-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 28px; margin-top: 32px; }
 .story-card { min-width: 0; }
 .story-image-link, .archive-art, .featured-art { display: block; overflow: hidden; border-radius: 10px; text-decoration: none; }
@@ -211,7 +215,6 @@
 @media (max-width: 1000px) {
   .home-hero { gap: 40px; }
   .hero-copy h1 { font-size: 76px; }
-  .hero-visual { height: 420px; }
   .hero-motto { font-size: 26px; }
   .recent-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 28px; }
   .story-card:first-child { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; align-content: start; }
@@ -244,14 +247,14 @@
 @media (max-width: 700px) {
   .home-hero { grid-template-columns: minmax(0,1fr); gap: 32px; margin-top: 32px; }
   .hero-copy { padding: 0; }
+  .hero-latest { padding: 28px; }
+  .hero-latest h2 { font-size: 26px; }
   .hero-copy > .eyebrow { margin-bottom: 18px; }
   .hero-copy h1 { font-size: 72px; }
   .hero-motto { font-size: 27px; margin-top: 18px; }
   .hero-description { font-size: 15px; margin-top: 20px; }
   .hero-actions { margin-top: 24px; gap: 12px 20px; }
   .button-primary { padding: 12px 16px; gap: 24px; font-size: 13px; }
-  .hero-visual { height: 260px; border-radius: 8px; }
-  .hero-visual img { object-position: center 60%; }
   .recent-grid { grid-template-columns: minmax(0,1fr); gap: 32px; margin-top: 28px; }
   .story-image-link .post-art { height: 220px; padding: 24px; }
   .story-card:first-child { display: block; }
